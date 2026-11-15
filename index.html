@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Answer the Questions | TED Talk Support Pathway</title>
+<style>
+:root{--a:#2F5D8A;--a2:#E0ECF8;--b:#E8A33D;--ink:#14243A;--bg:#F5F9FD;--muted:#6B6460;--line:#E8E1D9;--ok:#2E9E62;--ok2:#DFF5E8;--no:#D64545;--no2:#FCE4E4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,"Noto Sans Arabic",sans-serif;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+button{font:inherit;cursor:pointer;border:none}
+input{font:inherit;color:var(--ink)}
+.top{background:var(--a);color:#fff;padding:12px 16px 14px}
+.top .in{max-width:760px;margin:0 auto}
+.top .row{display:flex;align-items:center;gap:10px}
+.top .mod{font-weight:900;font-size:12px;letter-spacing:1.2px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top h1{font-size:20px;font-weight:900;line-height:1.2}
+.top .sp{flex:1}
+.top .stp{background:rgba(255,255,255,.22);border-radius:99px;padding:4px 12px;font-weight:800;font-size:14px;white-space:nowrap}
+.bar{height:8px;background:rgba(255,255,255,.3);border-radius:99px;margin-top:10px;overflow:hidden}
+.bar div{height:100%;background:#fff;border-radius:99px;transition:width .4s;width:0}
+main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:20px 16px 110px}
+.scr{animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(12px)}}
+h2{font-size:clamp(24px,5vw,32px);font-weight:900;line-height:1.15;display:flex;gap:10px;align-items:center}
+.ar{direction:rtl;text-align:right;color:var(--muted);font-weight:700;font-size:17px;margin-top:4px}
+.ins{background:var(--a2);border-radius:14px;padding:10px 14px;font-weight:700;margin:12px 0 14px;display:flex;gap:10px;align-items:center}
+.ins .ic{font-size:24px}
+.cards{display:grid;gap:10px}
+.lc{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center}
+.lc .e{width:56px;height:56px;border-radius:50%;background:var(--a2);display:grid;place-items:center;font-size:28px;flex:none}
+.lc b{display:block;font-size:19px}
+.lc span{color:var(--muted);font-weight:600;font-size:16px}
+.say{background:var(--ink);color:#fff;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:800;margin-top:12px}
+.q{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.q .qt{font-weight:800;font-size:19px;margin-bottom:10px}
+.opts{display:grid;gap:8px}
+.opt{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:11px 14px;text-align:left;font-weight:700;font-size:17px;color:var(--ink)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.sel{border-color:var(--a);background:var(--a2)}
+.opt.r{background:var(--ok2);border-color:var(--ok)}.opt.w{background:var(--no2);border-color:var(--no)}
+.why{margin-top:8px;font-weight:700;font-size:15.5px;padding:8px 12px;border-radius:12px;background:var(--ok2);color:#16583A}
+.why.no{background:var(--no2);color:#8A2424}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.tiles.wide{grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}.tiles.wide .tile{flex-direction:row;text-align:left;gap:12px;padding:12px 14px;font-size:16px}.tiles.wide .tile .e{font-size:30px;flex:none}
+.tile{background:#fff;border:3px solid var(--line);border-radius:18px;padding:12px 8px;font-weight:800;font-size:15.5px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.tile .e{font-size:34px}
+.tile.on{border-color:var(--a);background:var(--a2);transform:scale(1.03)}
+.own{margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.own input{flex:1 1 220px}
+.fld{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+.fld.done{border-color:var(--ok)}
+.fld .lab{font-weight:800;font-size:18px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;line-height:2}
+input.blank,textarea.blank{resize:none;font:inherit;color:var(--ink);line-height:1.4;border:none;border-bottom:3px dashed var(--a);background:var(--a2);border-radius:8px 8px 0 0;padding:4px 8px;font-weight:700;min-width:0;flex:1 1 100%;width:100%}
+input.blank:focus,textarea.blank:focus{outline:none;border-bottom-style:solid}
+input.txt{border:2px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:700;width:100%}
+input.txt:focus{outline:none;border-color:var(--a)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips .hd{font-size:13px;font-weight:800;color:var(--muted);width:100%}
+.chip{background:var(--bg);border:2px solid var(--line);border-radius:99px;padding:6px 12px;font-weight:700;font-size:14.5px}
+.chip:hover{border-color:var(--a)}
+.wc{font-size:13px;font-weight:800;color:var(--muted);margin-top:4px}.wc.over{color:var(--no)}
+.ord{display:grid;gap:8px}
+.ord button{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:800;font-size:17px;text-align:left;display:flex;gap:10px;align-items:center}
+.ord button .n{width:30px;height:30px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:15px;flex:none}
+.ord button.on{border-color:var(--ok);background:var(--ok2)}.ord button.on .n{background:var(--ok);color:#fff}
+.ord button.shake{animation:sh .35s;border-color:var(--no)}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.rec{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+.rec.done{border-color:var(--ok)}
+.rec .pl{font-weight:900;font-size:13px;letter-spacing:1.2px;color:var(--a)}
+.rec .tx{font-weight:700;font-size:18px;margin:4px 0 10px;background:var(--bg);border-radius:12px;padding:8px 12px}
+.rbtn{background:var(--no);color:#fff;font-weight:900;border-radius:99px;padding:10px 18px;font-size:16px}
+.rbtn.stop{background:var(--ink)}
+audio{width:100%;margin-top:8px}
+.ticks{display:grid;gap:6px;margin-top:10px}
+.ticks label{display:flex;gap:10px;align-items:center;font-weight:700;font-size:16px;background:var(--bg);border-radius:12px;padding:8px 12px;cursor:pointer}
+.ticks input{width:22px;height:22px;accent-color:var(--ok)}
+.clock{font-size:64px;font-weight:900;text-align:center;font-variant-numeric:tabular-nums;margin:10px 0}
+.center{text-align:center}
+.ph{display:grid;gap:12px}
+.ph .g{background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px}
+.ph .g h4{font-weight:900;margin-bottom:6px}
+.ph .g button{display:block;width:100%;text-align:left;background:var(--bg);border-radius:12px;padding:8px 12px;margin:6px 0;font-weight:700;font-size:16.5px;border:2px solid transparent}
+.ph .g button.heard{border-color:var(--ok);background:var(--ok2)}
+.slide{background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px;margin-bottom:12px;display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}
+@media(max-width:520px){.slide{grid-template-columns:1fr}}
+.slide .pv{aspect-ratio:16/9;border-radius:10px;background:var(--a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;text-align:center;padding:4px}
+.slide .pv .e{font-size:30px}
+.emo{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+.emo button{font-size:22px;background:var(--bg);border-radius:10px;width:40px;height:40px;border:2px solid transparent}
+.emo button.on{border-color:var(--a);background:var(--a2)}
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ab button{background:#fff;border:3px solid var(--line);border-radius:16px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:800}
+.ab .mini{width:100%;aspect-ratio:16/9;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;font-size:11px;line-height:1.25;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.ab button.r{border-color:var(--ok);background:var(--ok2)}.ab button.w{border-color:var(--no);background:var(--no2)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);border-top:2px solid var(--line);padding:10px 16px;backdrop-filter:blur(6px)}
+.nav .in{max-width:760px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.btn{background:var(--a);color:#fff;font-weight:900;border-radius:16px;padding:14px 22px;font-size:18px;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn.ok{background:var(--ok)}
+.btn.dim{opacity:.45}
+.nav .msg{flex:1;font-weight:800;font-size:14.5px;color:var(--muted);text-align:center}
+.welcome .big{font-size:70px;text-align:center}
+.welcome .boxes{display:grid;gap:10px;margin:16px 0}
+.welcome label{font-weight:800;font-size:15px;color:var(--muted)}
+.what{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+@media(max-width:520px){.what{grid-template-columns:1fr}}
+.what div{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center;font-weight:800;font-size:15px}
+.what div .e{font-size:28px;display:block}
+.cert{width:100%;border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.15);display:block;margin:12px 0}
+.teams{background:#fff;border:2px solid #6264A7;border-radius:18px;padding:14px;margin-top:14px}
+.teams h3{color:#464775;font-weight:900;display:flex;gap:8px;align-items:center}
+.teams ol{margin:8px 0 0 22px;font-weight:700;font-size:16.5px}
+.teams li{margin:4px 0}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(200%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-weight:800;z-index:60;transition:transform .3s;max-width:92vw;text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 100px;font-weight:600}
+#printArea{display:none}
+@media print{@page{size:A4;margin:10mm}body{background:#fff}body > *:not(#printArea){display:none !important}#printArea{display:block !important}#printArea img{width:100%;max-width:170mm;display:block;margin:0 auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <div class="row"><div><div class="mod">MODULE 5 OF 5 · SUPPORT PATHWAY</div><h1>🪑 Answer the Questions</h1></div><div class="sp"></div><div class="stp" id="stp">Start</div></div>
+  <div class="bar"><div id="bar"></div></div>
+</div></header>
+<main id="main"></main>
+<footer>TED Talk Support Pathway · LSC 1503 · HCT · Designed by: Nazila Motahari</footer>
+<nav class="nav"><div class="in"><button class="btn ghost" id="back" onclick="back()">◀</button><div class="msg" id="msg"></div><button class="btn" id="next" onclick="next()">Next ▶</button></div></nav>
+<div class="toast" id="toast"></div><canvas id="confetti"></canvas><div id="printArea"></div>
+<script>
+const MOD={id:"M5",n:5,title:"Answer the Questions",short:"Answer the Questions",emoji:"🪑",mins:25,ar:"أجب عن أسئلة المعلم",
+theme:{a:"#2F5D8A",a2:"#E0ECF8",b:"#E8A33D",ink:"#14243A",bg:"#F5F9FD"},
+goals:[["❓","Know the questions"],["🧩","Answer with A + R + E"],["🎙️","Practise out loud"]],
+steps:[
+ {type:"learn",e:"🪑",title:"After your talk",ar:"بعد الحديث يسألك المعلم",ins:"Your teacher asks you at least 3 questions about how you made your talk.",
+  cards:[["🎨","Your slides","Why did you choose that design? Where are your pictures from?"],["💡","Your ideas","How did you get your topic idea? What took the most time?"],["🎤","Your practice","How did you prepare? How did you remember what to say?"],["🪞","Looking back","What would you improve? What was difficult?"]]},
+ {type:"learn",e:"🧩",title:"Answer with A + R + E",ar:"أجب: الجواب + السبب + المثال",ins:"Three short parts make a strong answer.",
+  cards:[["🅰️","Answer","Say it in one sentence."],["🅁","Reason","“…because…”"],["🅴","Example","One real detail from your talk."]],
+  extra:`<div class="q" style="margin-top:12px"><div class="qt">Example</div><div>🧑‍🏫 <i>“Where did you get your pictures?”</i></div><div style="margin-top:6px"><b style="color:var(--a)">A:</b> I took most of them myself. <b style="color:var(--a)">R:</b> because I want to use my own work. <b style="color:var(--a)">E:</b> For example, the photo of my uncle's falcon is mine.</div></div>`},
+ {type:"mcq",e:"⚖️",title:"Which answer is better?",ar:"أيّ إجابة أفضل؟",ins:"Choose the stronger answer.",
+  items:[{q:"“Why did you choose that design?”",o:["“Desert colours, because my talk is about falconry.”","“Because.”"],a:0,why:"It has an answer and a reason."},
+   {q:"“How did you prepare?”",o:["“I don't know.”","“I practised 3 times with my sister, using cue cards.”"],a:1,why:"It has a real example."},
+   {q:"“What would you improve?”",o:["“My ending. Next time I would make it stronger.”","“Nothing, it was perfect.”"],a:0,why:"Teachers want to see you can reflect."}]},
+ {type:"build",e:"✍️",title:"Prepare my answers",ar:"جهّز إجاباتك",ins:"Complete each answer. Use YOUR talk. Tap an idea to start.",
+  fields:[{key:"q1",label:"Design: ___",ph:"I chose … because …",max:18,chars:130,chips:["I chose simple colours because I want people to look at the pictures","I chose big photos because pictures help people remember"]},
+   {key:"q2",label:"Pictures: I got my pictures from ___",ph:"e.g. my phone and Unsplash",max:14,chips:["my own phone, and I wrote the sources on my slides","Unsplash and Pexels, and I wrote the sources"]},
+   {key:"q3",label:"Practice: I prepared by ___",ph:"e.g. practising with cue cards",max:16,chips:["practising 3 times with cue cards","recording myself and listening","practising in front of my family"]},
+   {key:"q4",label:"Difficult: The hardest part was ___",ph:"e.g. speaking slowly",max:16,chips:["speaking slowly, so I practised pausing","finding my topic, so I asked my teacher","remembering my ideas, so I made cue cards"]},
+   {key:"q5",label:"Improve: Next time, I would ___",ph:"e.g. start earlier",max:14,chips:["start practising earlier","make my ending stronger","use fewer words on my slides"]}]},
+ {type:"phrases",e:"🙋",title:"Polite phrases",ar:"عبارات مهذّبة",ins:"Use these if you need time or don't understand. Listen to at least 4.",need:4,
+  groups:[["⏳ Need time",["That's a good question. Let me think.","Hmm, let me see."]],["🤔 Don't understand",["Could you repeat the question, please?","Do you mean my slides or my talk?"]]]},
+ {type:"record",e:"🎙️",title:"Practise out loud",ar:"تدرّب بصوت عالٍ",ins:"Read the question. Press Record and ANSWER it. Then listen. Do at least 2.",need:2,
+  prompts:[{label:"QUESTION 1",text:"How did you prepare for your talk?"},{label:"QUESTION 2",text:"Where did you get your pictures?"},{label:"QUESTION 3",text:"What would you improve if you had more time?"}],
+  checks:["I gave a reason (because…).","I gave a real example.","I spoke clearly and calmly."]},
+ {type:"check",e:"🏁",title:"Final check",ar:"الاختبار القصير",ins:"Answer all 5. You need 4 to pass.",pass:4,
+  items:[{q:"How many questions does the teacher ask, at least?",o:["3","1","10"],a:0},
+   {q:"What does A + R + E mean?",o:["Ask, Read, End","Answer, Reason, Example","Always Read Everything"],a:1},
+   {q:"You don't understand the question. You say…",o:["“Next question.”","Nothing","“Could you repeat the question, please?”"],a:2},
+   {q:"Which answer is best?",o:["“I practised 3 times with cue cards.”","“I don't know.”","“Because.”"],a:0},
+   {q:"Your pictures are from the internet. You should…",o:["say they are yours","say where they are from","say nothing"],a:1}]}
+],
+summary:[["Design","q1"],["Pictures","q2"],["Practice","q3"],["Hardest part","q4"],["Next time","q5"]]};
+const S={name:"",id:"",data:{},done:{},secs:0,score:null,best:null,start:new Date()};
+let cur=-1;const $=x=>document.getElementById(x);
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function words(s){return (s||"").trim().split(/\s+/).filter(Boolean).length}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2300)}
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/___/g,"blank").replace(/[“”]/g,""));u.lang="en-GB";u.rate=.85;speechSynthesis.speak(u)}catch(e){toast("Sound is not available on this device")}}
+function sub(t){return String(t).replace(/\{(\w+)\}/g,(m,k)=>S.data[k]||"…")}
+setInterval(()=>{if(!document.hidden&&cur>=0&&cur<MOD.steps.length)S.secs++},1000);
+
+/* ---------- screens ---------- */
+const STEPS=MOD.steps;
+function render(){const m=$("main");speechSynthesis&&speechSynthesis.cancel&&speechSynthesis.cancel();
+  if(cur<0){m.innerHTML=welcome()}else if(cur>=STEPS.length){m.innerHTML=finish();drawCert()}else{const s=STEPS[cur];m.innerHTML=`<div class="scr">${head(s)}${R[s.type](s,cur)}</div>`;if(s.after)s.after();if(s.type==="record")micCheck()}
+  const tot=STEPS.length;$("bar").style.width=(cur<0?0:Math.min(cur,tot)/tot*100)+"%";$("stp").textContent=cur<0?"Start":cur>=tot?"🏆 Done":`Step ${cur+1} of ${tot}`;
+  $("back").style.visibility=cur<0?"hidden":"visible";$("next").style.display=cur>=tot?"none":"";$("next").textContent=cur<0?"Start ▶":cur===tot-1?"Finish ▶":"Next ▶";updNext();scrollTo({top:0,behavior:"smooth"})}
+function head(s){return `<h2>${s.e||""} ${s.title}</h2>${s.ar?`<div class="ar">${s.ar}</div>`:""}${s.ins?`<div class="ins"><span class="ic">👉</span><span>${s.ins}</span></div>`:""}`}
+function welcome(){return `<div class="scr welcome"><div class="big">${MOD.emoji}</div><h2 style="justify-content:center;text-align:center">${MOD.title}</h2><div class="ar" style="text-align:center">${MOD.ar}</div>
+  <div class="ins"><span class="ic">⏱️</span><span>About ${MOD.mins} minutes. One small task on each screen. Take your time!</span></div>
+  <div class="boxes"><div><label>My full name</label><input class="txt" id="nm" value="${esc(S.name)}" maxlength="50" placeholder="e.g. Mariam Ali Alketbi" oninput="S.name=this.value;updNext()"></div>
+  <div><label>My HCT ID</label><input class="txt" id="hid" value="${esc(S.id)}" maxlength="12" placeholder="H00…" oninput="S.id=this.value.toUpperCase();updNext()"></div></div>
+  <div style="font-weight:900;margin-top:6px">Today you will:</div><div class="what">${MOD.goals.map(g=>`<div><span class="e">${g[0]}</span>${g[1]}</div>`).join("")}</div>
+  <div class="ins" style="margin-top:14px"><span class="ic">🏆</span><span>At the end you get a <b>certificate</b>. Upload it to <b>Teams</b>.</span></div></div>`}
+const R={
+ learn:(s)=>`<div class="cards">${s.cards.map(c=>`<div class="lc"><div class="e">${c[0]}</div><div><b>${c[1]}</b>${c[2]?`<span>${c[2]}</span>`:""}</div></div>`).join("")}</div>${s.cards.length?`<button class="say" onclick='say(${JSON.stringify(s.cards.map(c=>c[1]+". "+(c[2]||"")).join(" "))})'>🔊 Listen</button>`:""}${s.extra||""}`,
+ mcq:(s,i)=>{const st=S.done[i]||(S.done[i]={a:{}});return s.items.map((q,k)=>{const ord=q._o||(q._o=shuffle(q.o.map((_,j)=>j)));const a=st.a[k];
+   return `<div class="q"><div class="qt">${k+1}. ${q.q}</div><div class="opts">${ord.map(j=>`<button class="opt ${a!==undefined&&a.ok&&j===q.a?"r":""} ${a!==undefined&&!a.ok&&a.last===j?"w":""}" ${a&&a.ok?"disabled":""} onclick="mcq(${i},${k},${j})">${q.o[j]}</button>`).join("")}</div>${a?`<div class="why ${a.ok?"":"no"}">${a.ok?"✅ "+(q.why||"Yes!"):"❌ Not quite. Try again!"}</div>`:""}</div>`}).join("")},
+ pick:(s,i)=>{const v=S.data[s.key]||"";return `<div class="tiles ${s.wide?"wide":""}">${s.opts.map(o=>`<button class="tile ${v===o[1]?"on":""}" onclick="pick('${s.key}',${JSON.stringify(o[1]).replace(/"/g,"&quot;")})"><span class="e">${o[0]}</span>${o[1]}</button>`).join("")}</div>
+   <div class="own"><span style="font-weight:800">✏️ Or my own:</span><input class="txt" maxlength="40" placeholder="${s.own||"Type here"}" value="${s.opts.some(o=>o[1]===v)?"":esc(v)}" oninput="S.data['${s.key}']=this.value.trim();document.querySelectorAll('.tile').forEach(t=>t.classList.remove('on'));updNext()"></div>`},
+ build:(s,i)=>s.fields.map((f,k)=>{const v=S.data[f.key]||"";const parts=sub(f.label).split("___");const n=words(v);
+   return `<div class="fld ${v.trim()&&(!f.max||n<=f.max)?"done":""}" id="fl_${f.key}"><div class="lab">${esc(parts[0])}${(f.max||0)>=12?`<textarea class="blank" rows="2" id="in_${f.key}" maxlength="${f.chars||140}" placeholder="${esc(f.ph||"")}" oninput="bld('${f.key}',this.value,${f.max||0})">${esc(v)}</textarea>`:`<input class="blank" id="in_${f.key}" value="${esc(v)}" maxlength="${f.chars||90}" placeholder="${esc(f.ph||"")}" oninput="bld('${f.key}',this.value,${f.max||0})">`}${esc(parts[1]||"")}</div>
+   ${chipsOf(f)?`<div class="chips"><span class="hd">Ideas: tap one, then change it if you want</span>${chipsOf(f).map(c=>`<button class="chip" onclick="chip('${f.key}',${JSON.stringify(sub(c)).replace(/"/g,"&quot;")},${f.max||0})">${esc(sub(c))}</button>`).join("")}</div>`:""}${f.max?`<div class="wc ${n>f.max?"over":""}" id="wc_${f.key}">${n} / ${f.max} words</div>`:""}</div>`}).join(""),
+ order:(s,i)=>{const st=S.done[i]||(S.done[i]={got:[],ord:shuffle(s.items.map((_,j)=>j))});return `<div class="ord">${st.ord.map(j=>{const p=st.got.indexOf(j);return `<button class="${p>-1?"on":""}" id="or${j}" onclick="ordTap(${i},${j})"><span class="n">${p>-1?p+1:"?"}</span>${s.items[j]}</button>`}).join("")}</div>${st.got.length===s.items.length?`<div class="why">✅ ${s.why||"Perfect order!"}</div>`:""}`},
+ phrases:(s,i)=>{const st=S.done[i]||(S.done[i]={h:[]});let id=0;return `<div class="ph">${s.groups.map(g=>`<div class="g"><h4>${g[0]}</h4>${g[1].map(p=>{const k=id++;return `<button class="${st.h.includes(k)?"heard":""}" onclick="phr(${i},${k},this)">🔊 ${p}</button>`}).join("")}</div>`).join("")}</div><div class="center" style="margin-top:10px;font-weight:800" id="phc">${st.h.length} / ${s.need} heard</div>`},
+ ab:(s,i)=>{const st=S.done[i]||(S.done[i]={a:{}});return s.items.map((q,k)=>{const a=st.a[k];return `<div class="q"><div class="qt">${k+1}. ${q.q}</div><div class="ab">${[0,1].map(j=>`<button class="${a!==undefined?(j===q.a?"r":j===a?"w":""):""}" ${a!==undefined?"disabled":""} onclick="abAns(${i},${k},${j})"><div class="mini" style="${q.st?q.st[j]:""}">${q.s[j]}</div>${"AB"[j]}</button>`).join("")}</div>${a!==undefined?`<div class="why ${a===q.a?"":"no"}">${a===q.a?"✅ ":"❌ "}${q.why}</div>`:""}</div>`}).join("")},
+ slides:(s,i)=>s.slides.map((sl,k)=>{const e=S.data["se"+k]||sl.e,w=S.data["sw"+k]||"";const n=words(w);return `<div class="slide"><div class="pv" style="background:${sl.c||"var(--a)"}"><span class="e" id="pve${k}">${e}</span><span id="pvw${k}">${esc(w)||"…"}</span></div><div><b>${sl.t}</b><div style="font-size:14px;color:var(--muted);font-weight:700">Choose a picture idea:</div><div class="emo">${s.emojis.map(x=>`<button class="${e===x?"on":""}" onclick="slEmo(${k},'${x}',this)">${x}</button>`).join("")}</div>
+   <input class="txt" value="${esc(w)}" maxlength="40" placeholder="${sl.ph}" oninput="slW(${k},this.value)"><div class="wc ${n>5?"over":""}" id="swc${k}">${n} / 5 words</div></div></div>`}).join(""),
+ record:(s,i)=>{const st=S.done[i]||(S.done[i]={t:{},nomic:false,ticks:{}});return `<div id="micbar"></div>`+s.prompts.map((p,k)=>`<div class="rec ${st.t[k]?"done":""}" id="rc${k}"><div class="pl">${p.label}</div><div class="tx">${esc(sub(p.text))}</div><button class="rbtn" id="rb${i}_${k}" onclick="recTog(${i},${k})">🎙️ Record</button> ${st.t[k]?`<span style="font-weight:800;color:var(--ok)"> ✅ Recorded</span>`:""}<div id="au${k}">${st.url&&st.url[k]?`<audio controls src="${st.url[k]}"></audio>`:""}</div></div>`).join("")+
+   `<div class="q"><div class="qt">Listen to yourself. Tick what is true:</div><div class="ticks">${s.checks.map((c,k)=>`<label><input type="checkbox" ${st.ticks[k]?"checked":""} onchange="S.done[${i}].ticks[${k}]=this.checked;updNext()"> ${c}</label>`).join("")}</div></div>
+   <label class="ticks" style="display:block"><label><input type="checkbox" ${st.nomic?"checked":""} onchange="S.done[${i}].nomic=this.checked;updNext()"> 🙋 No microphone? I practised out loud with a friend or family member.</label></label>`},
+ timer:(s,i)=>{const st=S.done[i]||(S.done[i]={secs:0,run:false});return `${s.text?`<div class="cards">${s.text.map(c=>`<div class="lc"><div class="e">${c[0]}</div><div><b>${c[1]}</b></div></div>`).join("")}</div>`:""}<div class="clock" id="clk">${fmt(st.secs)}</div><div class="center"><button class="btn ${st.run?"ghost":""}" id="tbtn" onclick="tTog(${i})">${st.run?"⏹ Stop":"▶ Start timer"}</button></div><div class="center" id="tfb" style="margin-top:10px;font-weight:800">${st.secs&&!st.run?tfb(st.secs):""}</div>`},
+ check:(s,i)=>{const st=S.done[i]||(S.done[i]={a:{},res:null});st.set=st.set||s.items.map(q=>({q,o:shuffle(q.o.map((_,j)=>j))}));
+   return `${st.set.map((x,k)=>`<div class="q"><div class="qt">${k+1}. ${x.q.q}</div><div class="opts">${x.o.map(j=>`<button class="opt ${st.res?(j===x.q.a?"r":st.a[k]===j?"w":""):st.a[k]===j?"sel":""}" ${st.res?"disabled":""} onclick="chk(${i},${k},${j})">${x.q.o[j]}</button>`).join("")}</div></div>`).join("")}
+   <div class="center">${st.res?`<div class="q" style="text-align:center"><div style="font-size:48px">${st.res.ok?"🎉":"💪"}</div><div class="qt">You got ${st.res.n} / ${s.items.length}</div><div>${st.res.ok?"Great! Press <b>Finish</b> to get your certificate.":"You need "+s.pass+" / "+s.items.length+". Look at the green answers, then try again."}</div>${st.res.ok?"":`<button class="btn" style="margin-top:10px" onclick="chkRetry(${i})">🔁 Try again</button>`}</div>`:`<button class="btn" onclick="chkMark(${i})">✅ Check my answers</button>`}</div>`}
+};
+/* ---------- handlers ---------- */
+function mcq(i,k,j){const q=STEPS[i].items[k],st=S.done[i];const ok=j===q.a;st.a[k]={ok,last:j};if(!ok)say("Try again");render2()}
+function pick(key,v){S.data[key]=v;render2()}
+function bld(key,v,max){S.data[key]=v;const n=words(v);const w=$("wc_"+key);if(w){w.textContent=n+" / "+max+" words"+(n>max?" · too long":"");w.classList.toggle("over",n>max)}$("fl_"+key).classList.toggle("done",!!v.trim()&&(!max||n<=max));updNext()}
+function chip(key,v,max){const el=$("in_"+key);el.value=v;bld(key,v,max);el.focus();const p=v.indexOf("___");if(p>-1){el.setSelectionRange(p,p+3);toast("✏️ Change ___ to your own words")}}
+function chipsOf(f){return (f.chipsBy&&f.chipsBy[S.data[f.by]])||f.chips}
+function d(k){return String(S.data[k]||"–").trim().replace(/[.!?]+$/,"")}
+function ordTap(i,j){const s=STEPS[i],st=S.done[i];if(st.got.includes(j))return;if(j===st.got.length){st.got.push(j);render2()}else{const b=$("or"+j);b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");toast("Not yet. What comes next?")}}
+function phr(i,k,el){say(el.textContent.replace("🔊",""));const st=S.done[i];if(!st.h.includes(k)){st.h.push(k);el.classList.add("heard")}$("phc").textContent=st.h.length+" / "+STEPS[i].need+" heard";updNext()}
+function abAns(i,k,j){S.done[i].a[k]=j;render2()}
+function slEmo(k,x,el){S.data["se"+k]=x;$("pve"+k).textContent=x;el.parentNode.querySelectorAll("button").forEach(b=>b.classList.remove("on"));el.classList.add("on");updNext()}
+function slW(k,v){S.data["sw"+k]=v;$("pvw"+k).textContent=v||"…";const n=words(v);const w=$("swc"+k);w.textContent=n+" / 5 words"+(n>5?" · too many":"");w.classList.toggle("over",n>5);updNext()}
+let rec=null,recK=null;
+let micStream=null;
+function micEnv(){if(window.self!==window.top)return"frame";if(!window.isSecureContext&&location.protocol!=="file:")return"insecure";if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder)return"unsupported";return""}
+function micMsg(code){const open=`<a class="btn" style="display:inline-block;margin-top:8px;text-decoration:none;font-size:15px;padding:10px 16px" href="${location.href}" target="_blank" rel="noopener">↗ Open in my browser</a>`;
+  const M={frame:["🔒 The microphone is blocked here.","This page is open inside another app (Teams, Nearpod or a preview). Open it in Chrome, Edge or Safari, then record."+open],
+   insecure:["🔒 The microphone needs a secure link.","Open the page from its https:// link (GitHub Pages)."+open],
+   unsupported:["📱 This browser cannot record.","Use the latest Chrome, Edge or Safari. On iPhone, update iOS."],
+   NotAllowedError:["🔒 Microphone permission was blocked.","Tap the 🔒 or ⓘ next to the web address → Microphone → Allow. Then reload the page. On iPhone: Settings → Safari → Microphone → Allow."],
+   NotFoundError:["🎧 No microphone found.","Plug in headphones with a microphone, or use your phone."],
+   NotReadableError:["🎙️ Another app is using the microphone.","Close Teams calls, Zoom or other apps, then try again."]};
+  const m=M[code]||["🎙️ The microphone did not start.","Try another browser (Chrome, Edge or Safari), or use your phone."+open];
+  return `<div class="q" style="border-color:var(--no);background:var(--no2)"><div class="qt">${m[0]}</div><div style="font-weight:600">${m[1]}</div><div style="font-weight:700;margin-top:8px;font-size:15px">No microphone at all? Practise out loud with a friend or family member and tick the box at the bottom. 🙋</div></div>`}
+function micCheck(){const bar=$("micbar");if(!bar)return;const e=micEnv();bar.innerHTML=e?micMsg(e):""}
+function pickType(){const T=["audio/webm;codecs=opus","audio/mp4","audio/webm","audio/ogg;codecs=opus"];for(const t of T){try{if(MediaRecorder.isTypeSupported(t))return t}catch(e){}}return""}
+async function recTog(i,k){const st=S.done[i];if(rec&&rec.state==="recording"){rec.stop();return}
+  const env=micEnv();if(env){$("micbar").innerHTML=micMsg(env);$("micbar").scrollIntoView({behavior:"smooth",block:"center"});return}
+  try{if(!micStream||!micStream.getAudioTracks().some(t=>t.readyState==="live"))micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const ch=[],type=pickType();rec=type?new MediaRecorder(micStream,{mimeType:type}):new MediaRecorder(micStream);recK=k;const r=rec;
+    r.ondataavailable=e=>{if(e.data&&e.data.size)ch.push(e.data)};
+    r.onstop=()=>{if(!ch.length){toast("Nothing was recorded. Try again and speak for a few seconds.");render2();return}st.url=st.url||{};st.url[k]=URL.createObjectURL(new Blob(ch,{type:r.mimeType||type||"audio/webm"}));st.t[k]=(st.t[k]||0)+1;render2();toast("✅ Recorded! Press play to listen.")};
+    r.start(500);$("micbar").innerHTML="";const b=$("rb"+i+"_"+k);b.textContent="⏹ Stop";b.classList.add("stop");toast("🔴 Recording… press Stop when you finish.")}
+  catch(e){$("micbar").innerHTML=micMsg(e&&e.name);$("micbar").scrollIntoView({behavior:"smooth",block:"center"})}}
+let tIv=null;function fmt(s){return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function tfb(s){return s<180?"⏱️ "+fmt(s)+": a bit short. Your talk must be 3–6 minutes. Add more detail and examples.":s>360?"⏱️ "+fmt(s)+": a bit long. Cut some details.":"🎉 "+fmt(s)+": great timing for 3–6 minutes!"}
+function tTog(i){const st=S.done[i];if(st.run){st.run=false;clearInterval(tIv);st.doneOnce=true;render2();return}st.run=true;st.secs=0;render2();tIv=setInterval(()=>{st.secs++;const c=$("clk");if(c)c.textContent=fmt(st.secs)},1000)}
+function chk(i,k,j){const st=S.done[i];if(st.res)return;st.a[k]=j;render2()}
+function chkMark(i){const s=STEPS[i],st=S.done[i];if(Object.keys(st.a).length<s.items.length){toast("Answer all "+s.items.length+" questions first");return}const n=st.set.filter((x,k)=>st.a[k]===x.q.a).length;st.res={n,ok:n>=s.pass};S.score=n;S.best=Math.max(S.best||0,n);if(st.res.ok)confetti();render2()}
+function chkRetry(i){const st=S.done[i];st.a={};st.res=null;st.set=null;render2()}
+function render2(){const y=scrollY;render();scrollTo(0,y)}
+/* ---------- gating ---------- */
+function req(){if(cur<0){if(S.name.trim().split(/\s+/).length<2)return"Type your full name (first and last name).";if(S.id.trim().length<5)return"Type your HCT ID.";return true}
+  if(cur>=STEPS.length)return true;const s=STEPS[cur],st=S.done[cur];switch(s.type){
+   case"learn":return true;
+   case"mcq":return s.items.every((_,k)=>st&&st.a[k]&&st.a[k].ok)||"Answer every question correctly.";
+   case"pick":return !!(S.data[s.key]||"").trim()||"Choose one, or type your own.";
+   case"build":{for(const f of s.fields){const v=S.data[f.key]||"";if(!v.trim()&&!f.optional)return"Fill in every box. Tap an idea to help you.";if(v.includes("___"))return"Change ___ to your own words.";if(f.personal&&!/\b(I|I'm|I've|my|me|we|our|us)\b/i.test(v))return"Make it about YOU: use I, my or we.";if(f.max&&words(v)>f.max)return"Too many words in one box.";}return true}
+   case"order":return (st&&st.got.length===s.items.length)||"Tap the parts in the right order.";
+   case"phrases":return (st&&st.h.length>=s.need)||`Listen to ${s.need} phrases.`;
+   case"ab":return s.items.every((_,k)=>st&&st.a[k]!==undefined)||"Choose A or B for each one.";
+   case"slides":{for(let k=0;k<s.slides.length;k++){const w=S.data["sw"+k]||"";if(!w.trim())return`Write the words for slide ${k+1}.`;if(words(w)>5)return`Slide ${k+1}: 5 words or fewer.`}return true}
+   case"record":{const any=Object.keys(st.t).length>=(s.need||s.prompts.length)||st.nomic;if(!any)return`Record ${s.need&&s.need<s.prompts.length?s.need+" parts":"each part"} (or tick the box if you have no microphone).`;if(!st.nomic&&Object.values(st.ticks).filter(Boolean).length<1)return"Listen and tick at least one box.";return true}
+   case"timer":return (st&&st.doneOnce)||"Start and stop the timer for your practice.";
+   case"check":return (st&&st.res&&st.res.ok)||"Pass the check (try again if you need to).";
+  }return true}
+function updNext(){const r=req();$("next").classList.toggle("dim",r!==true);$("msg").textContent=r===true?"":r}
+function next(){const r=req();if(r!==true){toast("✋ "+r);return}cur++;render()}
+function back(){if(cur>-1){cur--;render()}}
+/* ---------- finish ---------- */
+function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function codeFor(mod,name,id,date,score){const str="TTSP26|"+mod+"|"+name.trim().toLowerCase().replace(/\s+/g," ")+"|"+id.trim().toUpperCase()+"|"+date+"|"+score;let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)>>>0}const s=h.toString(36).toUpperCase().padStart(7,"0").slice(-6);return mod+"-"+s.slice(0,3)+"-"+s.slice(3)}
+function finish(){S.date=S.date||today();S.code=codeFor(MOD.id,S.name,S.id,S.date,S.best);confetti();
+  return `<div class="scr"><h2>🏆 Well done, ${esc(S.name.split(" ")[0])}!</h2><div class="ar">أحسنت! حمّل الشهادة وارفعها على تيمز.</div><canvas id="cv" width="1080" height="1500" class="cert"></canvas>
+  <div class="center" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn ok" onclick="dl()">⬇️ Download my certificate</button><button class="btn ghost" onclick="pr()">🖨️ Print / PDF</button></div>
+  <div class="teams"><h3>📤 Upload it to Teams</h3><ol><li>Download your certificate (button above).</li><li>Open <b>Teams</b> → your Support Pathway team → <b>Assignments</b>.</li><li>Open <b>Module ${MOD.n}: ${MOD.short}</b>.</li><li>Tap <b>+ Add work</b> → <b>Upload from this device</b> → choose the picture.</li><li>Tap <b>Turn in</b>. ✅</li></ol>
+  <div class="ar" style="margin-top:8px">افتح تيمز ← الواجبات ← الوحدة ${MOD.n} ← أضف عملك ← ارفع الصورة ← سلّم</div></div>
+  ${MOD.n<5?`<div class="ins" style="margin-top:14px"><span class="ic">➡️</span><span>Next: <b>Module ${MOD.n+1}</b>. Open it from the Start Here page.</span></div>`:`<div class="ins" style="margin-top:14px"><span class="ic">🎤</span><span>You finished all 5 modules. You are ready. Good luck in your TED Talk!</span></div>`}</div>`}
+function wrap(x,t,X,Y,maxW,lh,maxLines){const ws=String(t).split(" ");let line="",n=0;for(let i=0;i<ws.length;i++){const test=line?line+" "+ws[i]:ws[i];if(x.measureText(test).width>maxW&&line){x.fillText(line,X,Y);Y+=lh;line=ws[i];if(++n>=maxLines-1){const rest=ws.slice(i).join(" ");let r=rest;while(x.measureText(r+"…").width>maxW&&r.length)r=r.slice(0,-1);x.fillText(r+(r.length<rest.length?"…":""),X,Y);return Y+lh}}else line=test}if(line){x.fillText(line,X,Y);Y+=lh}return Y}
+function drawCert(){const c=$("cv"),css=getComputedStyle(document.documentElement);const items=MOD.summary.map(([l,f])=>[l,typeof f==="function"?f():(S.data[f]||"–")]);
+  const x0=c.getContext("2d");const H=Math.max(certBody(x0,items,false)+110,1250);c.height=H;certBody(c.getContext("2d"),items,true,H,css)}
+function certBody(x,items,draw,H,css){const W=1080;let y=880;
+  if(draw){const A=css.getPropertyValue("--a").trim(),A2=css.getPropertyValue("--a2").trim(),INK=css.getPropertyValue("--ink").trim();
+  x.fillStyle="#fff";x.fillRect(0,0,W,H);x.fillStyle=A;x.fillRect(0,0,W,250);x.fillStyle="rgba(255,255,255,.15)";x.beginPath();x.arc(W-90,40,170,0,7);x.fill();
+  x.fillStyle="#fff";x.font="900 26px Segoe UI, Arial";x.fillText("TED TALK SUPPORT PATHWAY · LSC 1503 · HCT",60,70);{let fs=54;const t=`Module ${MOD.n}: ${MOD.short}`;do{x.font=`900 ${fs}px Segoe UI, Arial`;fs-=2}while(x.measureText(t).width>800&&fs>30);x.fillText(t,60,150)}x.font="700 30px Segoe UI, Arial";x.fillText("Certificate of completion",60,205);
+  x.font="110px Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji";x.fillText(MOD.emoji,W-200,190);
+  x.fillStyle=INK;x.font="700 28px Segoe UI, Arial";x.fillText("This certifies that",60,320);x.fillStyle=A;x.font="900 64px Segoe UI, Arial";x.fillText(S.name.trim().slice(0,30),60,400);
+  x.fillStyle=INK;x.font="700 32px Segoe UI, Arial";x.fillText("HCT ID: "+S.id.trim(),60,455);
+  const box=(bx,lab,val)=>{x.fillStyle=A2;roundRect(x,bx,495,300,120,22);x.fill();x.fillStyle="#6B6460";x.font="800 22px Segoe UI, Arial";x.fillText(lab,bx+22,535);x.fillStyle=INK;x.font="900 38px Segoe UI, Arial";x.fillText(val,bx+22,590)};
+  box(60,"DATE",S.date);box(390,"TIME SPENT",Math.max(1,Math.round(S.secs/60))+" min");box(720,"CHECK SCORE",S.best+" / "+STEPS.find(s=>s.type==="check").items.length);
+  x.fillStyle=INK;roundRect(x,60,650,960,100,22);x.fill();x.fillStyle="#fff";x.font="800 24px Segoe UI, Arial";x.fillText("VERIFICATION CODE",90,708);x.font="900 46px Consolas, Menlo, monospace";x.fillText(S.code,470,718);
+  y=830;x.fillStyle=A;x.font="900 34px Segoe UI, Arial";x.fillText("My work",60,y);y+=20;x.fillRect(60,y,960,4);y+=56;}
+  const ft=x.fillText.bind(x);if(!draw)x.fillText=()=>{};
+  const INK=draw?css.getPropertyValue("--ink").trim():"#000";
+  items.forEach(([l,v])=>{x.fillStyle="#6B6460";x.font="800 24px Segoe UI, Arial";x.fillText(l.toUpperCase(),60,y);y+=40;x.fillStyle=INK;x.font="600 30px Segoe UI, Arial";String(v).split("\n").forEach(line=>{y=wrap(x,line,60,y,960,40,3)});y+=14});
+  if(!draw)x.fillText=ft;
+  if(draw){x.fillStyle="#9A928C";x.font="600 22px Segoe UI, Arial";x.fillText("Designed by: Nazila Motahari · TED Talk Support Pathway",60,H-40)}
+  return y}
+function roundRect(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+function fileName(){return `Module${MOD.n}_${S.name.trim().replace(/\W+/g,"_")}_${S.id.trim()}.png`}
+function dl(){const c=$("cv");c.toBlob(b=>{const f=new File([b],fileName(),{type:"image/png"});
+  if(navigator.canShare&&/Android|iPhone|iPad/i.test(navigator.userAgent)&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"My certificate"}).catch(()=>{})}
+  else{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fileName();a.click()}toast("⬇️ Saved! Now upload it to Teams.")},"image/png")}
+function pr(){$("printArea").innerHTML=`<img src="${$("cv").toDataURL("image/png")}">`;setTimeout(()=>window.print(),150)}
+function confetti(){const c=$("confetti"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const cols=[getComputedStyle(document.documentElement).getPropertyValue("--a").trim(),"#FFC93C","#2E9E62","#fff"],P=Array.from({length:120},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,r:4+Math.random()*6,c:cols[Math.random()*4|0],vy:2+Math.random()*3,vx:-1.5+Math.random()*3,a:Math.random()*6}));
+  let t=0;(function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.a+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);x.restore()});if(++t<150)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})()}
+addEventListener("beforeunload",e=>{if(cur>=0&&cur<STEPS.length){e.preventDefault();e.returnValue=""}});
+render();
+</script>
+</body>
+</html>
